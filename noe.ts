@@ -1,92 +1,136 @@
-interface Animals {
+interface AnimalConf {
     type: string;
-    name: string;
-    color: string;
-    foot: number;
-
+    name?: string;
+    color?: string;
+    foot?: number;
 }
 
-class Species implements Animals {
+
+class Animals implements AnimalConf {
     type: string;
-    name: string;
-    color: string;
-    foot: number;
-    constructor(animal: Animals) {
+    name?: string;
+    color?: string;
+    foot?: number;
+    constructor(animal: AnimalConf) {
         this.type = animal.type;
         this.name = animal.name;
         this.color = animal.color;
         this.foot = animal.foot;
     }
-
-
 }
 
-class Actions extends Species {
-  
-    constructor(animal: Animals) { 
-      super(animal);
+class Action extends Animals {
+    constructor(animal: AnimalConf) {
+        super(animal);
     }
-  // We take photos of all the animals
-
-    photos() {
-      console.log(`We can take photos of ${this.type} ${this.name}` );
+    eat() {
+        if(this.color === 'noir')
+           console.log(`Vous donnez a manger a un ${this.type}`);
+        else
+            console.log(`Vous ne pouvez pas nourrir un ${this.type} qui n'est pas noir`);
     }
-
-    // Only cats can mew
-    mew(){
-        if (this.type === 'cat') {
-      console.log(`${this.type} ${this.name} can mew`)
-        }else{
-            console.log(`{this.type} ${this.name} can't mew`)
-        }
+    swim () {
+        if(this.type === 'poisson')
+            console.log(`Vous voyez nager un ${this.name}.`);
+        else
+            console.log(`Cet animal ne peut pas nager ici.`);
     }
-
-    // Only dog can bark
-    bark(){
-        if (this.type === 'dog') {
-        console.log(`${this.type} ${this.name} can bark`)
-        }else{
-            console.log(`{this.type} ${this.name} can't bark`)
-        }
+    fly () {
+        if(this.type === 'oiseau')
+            console.log(`Vous voyez voler un ${this.name}.`);
+        else
+            console.log(`Cet animal ne peut pas voler.`);
     }
-
-    // Only bird cvan fly
-    fly(){
-        if (this.type === 'bird') {
-            console.log(`${this.name} ${this.name} can fly`)
-        }else{
-            console.log(`{this.name} ${this.name} can't fly`)
-        }
-
+    cry () {
+        if(this.type === 'chat')
+            console.log(`Vous voyez miauler un ${this.type} ${this.name}.`);
+        else if(this.type === 'chien')
+            console.log(`Vous voyez aboyer un ${this.type} ${this.name}.`);
+        else
+            console.log(`Cet animal ne peut pas miauler ou aboyer.`);
     }
-
-    // Only fish can swim
-    swim(){
-        if (this.type === 'fish') {
-            console.log(`${this.name} ${this.name} can swim`)
-        }else{
-            console.log(`${this.name} ${this.name} can't swim`)
-        }
-
+    caress() {
+        if(this.foot === 4)
+            console.log(`Vous caressez un ${this.type} ${this.name}.`);
+        else
+            console.log(`Cet animal ne peut pas être caresser.`);
     }
+    photo() {
+        console.log(`Vous prenez une photo de ${this.type} ${this.name}.`);
+    }
+}
 
-    // 
-    caress(){
-        if(this.foot === 4){
-            console.log(`${this.type} ${this.name} can be caress`)
+let catOne = new Action({type: 'chat', name: 'européen', color: 'noir', foot: 4});
+catOne.eat();
+catOne.swim();
+catOne.fly();
+catOne.cry();
+catOne.caress();
+catOne.photo();
+let catTwo = new Action({type: 'chat', name: 'chartreux', foot: 4});
+catTwo.eat();
+catTwo.swim();
+catTwo.fly();
+catTwo.cry();
+catTwo.caress();
+catTwo.photo();
+let dogOne = new Action({type: 'chien', name: 'terre-neuve', color: 'noir', foot: 4});
+dogOne.eat();
+dogOne.swim();
+dogOne.fly();
+dogOne.cry();
+dogOne.caress();
+dogOne.photo();
+let dogTwo = new Action({type: 'chien', name: 'moon moon', foot: 4});
+dogTwo.eat();
+dogTwo.swim();
+dogTwo.fly();
+dogTwo.cry();
+dogTwo.caress();
+dogTwo.photo();
+let fishOne = new Action({type: 'poisson', name: 'requin'});
+fishOne.eat();
+fishOne.swim();
+fishOne.fly();
+fishOne.cry();
+fishOne.caress();
+fishOne.photo();
+let fishTwo = new Action({type: 'poisson', name: 'thon'});
+fishTwo.eat();
+fishTwo.swim();
+fishTwo.fly();
+fishTwo.cry();
+fishTwo.caress();
+fishTwo.photo();
+let birdOne = new Action({type: 'oiseau', name: 'merle', color: 'noir', foot: 2});
+birdOne.eat();
+birdOne.swim();
+birdOne.fly();
+birdOne.cry();
+birdOne.caress();
+birdOne.photo();
+let birdTwo = new Action({type: 'oiseau', name: 'mésange', foot: 2});
+birdTwo.eat();
+birdTwo.swim();
+birdTwo.fly();
+birdTwo.cry();
+birdTwo.caress();
+birdTwo.photo();
+let maggot = new Action({type: 'asticot'});
+maggot.eat();
+maggot.swim();
+maggot.fly();
+maggot.cry();
+maggot.caress();
+maggot.photo();
 
-        }else{
-            console.log(`${this.type} ${this.name} can't be caress`)
-        }
+
+
+
+
+
+
+
 
     
-    }
-    eat(){
-        if(this.color === 'black'){
-            console.log(`${this.type} ${this.name} can eat`)
 
-    }else{
-        console.log(`${this.type} ${this.name} can't eat`)
-    }
-}
-  }
